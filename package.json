@@ -1,0 +1,40 @@
+{
+    "name": "node_js_model_app",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Application de gestion scolaire",
+    "engines": {
+        "node": "14.15.1",
+        "npm": "6.14.8",
+        "yarn": "1.22.10",
+        "vscode": "^1.22.0"
+    },
+    "author": {
+        "email": "koffiedy@gmail.com",
+        "name": "koffi edy",
+        "url": "https://www.linkedin.com/in/edy-koffi-948494192/"
+    },
+    "scripts": {
+        "start": "node ./index.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "csv-parse": "^4.14.2",
+        "debug": "^4.1.1",
+        "express": "~4.16.0",
+        "http-errors": "^1.7.3",
+        "moment": "^2.24.0",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.2",
+        "pg": "^8.2.1",
+        "pg-format": "^1.0.4",
+        "pg-hstore": "^2.3.3",
+        "sequelize": "^6.3.5",
+        "socket.io": "^2.2.0",
+        "vcard-parser": "^1.0.0",
+        "vcf": "^2.1.0"
+    },
+    "type": "module"
+}

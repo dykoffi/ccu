@@ -1,7 +1,8 @@
 import { Transform } from 'stream'
 import vcf from 'vcard-parser'
 
-export class parserVCF extends Transform {
+
+export class sequenceVCF extends Transform {
     constructor(options) {
         super({ ...options, objectMode: true })
         this.str = ""
@@ -13,7 +14,25 @@ export class parserVCF extends Transform {
     }
 
     _flush(callback) {
-        this.push(vcf.parse(this.str))
+        let tab = this.str.split('END:VCARD\r\n').map(elt => elt + "END:VCARD\r\n")
+        tab.pop()
+        this.push(tab)
+        callback()
+    }
+}
+export class parserVCF extends Transform {
+    constructor(options) {
+        super({ ...options, objectMode: true })
+    }
+
+    _transform(chunk, encoding, callback) {
+        chunk.forEach(elt => {
+            this.push(vcf.parse(elt))
+        });
+        callback()
+    }
+
+    _flush(callback) {
         callback()
     }
 }
@@ -24,7 +43,7 @@ export class formatVCF extends Transform {
     }
 
     _transform(chunk, encoding, callback) {
-        this.push(vcf.generate(chunk))
+        this.push(vcf.generate(chunk) + "\n")
         callback()
     }
 

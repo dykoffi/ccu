@@ -10,21 +10,7 @@ createReadStream('./00003.vcf')
     .pipe(new Transform({
         objectMode: true,
         transform(chunk, enc, call) {
-            this.push(chunk.tel)
-            call()
-        }
-    }))
-    .pipe(new Transform({
-        objectMode: true,
-        transform(chunk, enc, call) {
-            chunk.forEach(tel => this.push(tel))
-            call()
-        }
-    }))
-    .pipe(new Transform({
-        objectMode: true,
-        transform(chunk, enc, call) {
-            chunk.value = civNumber(chunk.value)
+            chunk.tel = chunk.tel.map(elt => ({...elt, value:civNumber(elt.value)}))
             this.push(chunk)
             call()
         }

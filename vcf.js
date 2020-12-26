@@ -1,7 +1,7 @@
 import { Transform } from 'stream'
 import vcf from 'vcard-parser'
 
-export default class parser extends Transform {
+export class parserVCF extends Transform {
     constructor(options) {
         super({ ...options, objectMode: true })
         this.str = ""
@@ -14,6 +14,21 @@ export default class parser extends Transform {
 
     _flush(callback) {
         this.push(vcf.parse(this.str))
+        callback()
+    }
+}
+
+export class formatVCF extends Transform {
+    constructor(options) {
+        super({ ...options, objectMode: true })
+    }
+
+    _transform(chunk, encoding, callback) {
+        this.push(vcf.generate(chunk))
+        callback()
+    }
+
+    _flush(callback) {
         callback()
     }
 }

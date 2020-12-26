@@ -43,7 +43,7 @@ export class formatVCF extends Transform {
     }
 
     _transform(chunk, encoding, callback) {
-        this.push(vcf.generate(chunk) + "\n")
+        this.push(vcf.generate(chunk) + "\r\n")
         callback()
     }
 

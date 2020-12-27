@@ -3,7 +3,7 @@ import { Transform } from 'stream'
 import { civNumber } from './fonctions.js'
 import {sequenceVCF } from './vcf.js'
 
-createReadStream('./Contacts.vcf')
+createReadStream('./00001.vcf')
     .pipe(new sequenceVCF())
     .pipe(new Transform({
         objectMode: true,

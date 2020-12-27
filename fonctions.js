@@ -32,8 +32,22 @@ export function civNumber(number) {
                 default: break;
             }
         }
-        return "+225 " + num
+        return "+225 " + separate(num,2)
     } else {
         return number
     }
+}
+
+export function separate(chaine, indice, somme) {
+	indice = indice === undefined ? 3 : indice
+	somme = somme === undefined ? "" : somme
+	if (chaine === undefined || chaine === null) return null
+	try { chaine = chaine?.toString() } catch (error) { }
+	if (chaine.length <= indice) {
+		return (chaine + somme)
+	} else {
+		somme = " " + chaine?.substring(chaine.length - indice, chaine.length) + somme
+		chaine = chaine?.slice(0, chaine.length - indice)
+		return separate(chaine, indice, somme)
+	}
 }

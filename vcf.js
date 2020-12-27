@@ -1,4 +1,4 @@
-import { Transform } from 'stream'
+import { Transform, Writable } from 'stream'
 export class sequenceVCF extends Transform {
     constructor(options) {
         super({ ...options, objectMode: true })
